@@ -15,6 +15,19 @@ public class GreetingApp {
         return "{\"message\": \"Hello World\"}";
     }
 
+    @PostMapping
+    public String postGreeting(){
+        return "{\"message\": \"Greeting Received\"}";
+    }
 
+    @PutMapping
+    public String putGreeting(){
+        return "{\"message\": \"Greeting Updated\"}";
+    }
+
+    @DeleteMapping
+    public String deleteGreeting(){
+        return "{\"message\": \"Greeting Deleted\"}";
+    }
 
 }
