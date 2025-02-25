@@ -1,5 +1,11 @@
 package com.example.GreetingApp.Service;
 
+//import org.springframework.stereotype.Service;
+
+import com.example.GreetingApp.model.Greeting;
+import com.example.GreetingApp.Service.GreetingService;
+import com.example.GreetingApp.reprository.GreetingReprository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +24,17 @@ public class GreetingService {
             return "Hello " + lastName;
         }
         return "Hello World";
+    }
+
+    @Autowired
+    private GreetingReprository greetingRepository;
+
+    public Greeting saveGreeting(String message) {
+        return greetingRepository.save(new Greeting(message));
+    }
+
+    public Greeting getGreetingById(Long id) {
+        return greetingRepository.findById(id).orElse(null);
     }
 
 }
