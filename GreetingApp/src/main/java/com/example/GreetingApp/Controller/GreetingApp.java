@@ -66,4 +66,10 @@ public class GreetingApp {
         return greetingService.updateGreeting(id, newMessage);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteGreeting(@PathVariable Long id) {
+        greetingService.deleteGreeting(id);
+    }
+
+
 }
