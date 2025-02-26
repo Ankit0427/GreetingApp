@@ -3,10 +3,12 @@ package com.example.GreetingApp.Service;
 //import org.springframework.stereotype.Service;
 
 import com.example.GreetingApp.model.Greeting;
-import com.example.GreetingApp.Service.GreetingService;
+//import com.example.GreetingApp.Service.GreetingService;
 import com.example.GreetingApp.reprository.GreetingReprository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -35,6 +37,16 @@ public class GreetingService {
 
     public Greeting getGreetingById(Long id) {
         return greetingRepository.findById(id).orElse(null);
+    }
+
+    public Greeting updateGreeting(Long id, String newMessage) {
+        Optional<Greeting> existingGreeting = greetingRepository.findById(id);
+        if (existingGreeting.isPresent()) {
+            Greeting greeting = existingGreeting.get();
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting);
+        }
+        return null;
     }
 
 }
